@@ -1,0 +1,499 @@
+/* ========================================
+   style.css – Thème Minecraft Pixel Art
+   Site Minecraft – Projet NSI
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* --- Variables Minecraft --- */
+:root {
+    --mc-bg:          #1A1A1A;
+    --mc-stone:       #7F7F7F;
+    --mc-dark:        #3C3C3C;
+    --mc-inv:         #6B6B6B;
+    --mc-inv-dark:    #373737;
+    --mc-inv-light:   #BDBDBD;
+    --mc-grass:       #55FF55;
+    --mc-grass-dark:  #2A7F2A;
+    --mc-yellow:      #FFFF55;
+    --mc-yellow-dark: #AA7700;
+    --mc-aqua:        #55FFFF;
+    --mc-white:       #F0F0F0;
+    --mc-shadow:      #3C3C3C;
+    --mc-dirt:        #7A5C3A;
+    --mc-sky:         #3A72D0;
+    --police-pixel:   'Press Start 2P', monospace;
+    --police-texte:   'Segoe UI', Arial, sans-serif;
+}
+
+/* --- Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- Corps – fond pierre avec grille de blocs --- */
+body {
+    background-color: var(--mc-bg);
+    color: var(--mc-white);
+    font-family: var(--police-texte);
+    font-size: 1rem;
+    line-height: 1.8;
+    background-image:
+        linear-gradient(rgba(0,0,0,0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.25) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,0.02) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 2px, transparent 2px);
+    background-size: 32px 32px, 32px 32px, 8px 8px, 8px 8px;
+}
+
+/* ========================================
+   NAVIGATION – style bouton Minecraft
+   ======================================== */
+nav {
+    position: sticky;
+    top: 0;
+    background: #3C3C3C;
+    border-bottom: 4px solid #000;
+    z-index: 100;
+    padding: 0 1rem;
+    box-shadow:
+        0 4px 0 #000,
+        inset 0 2px 0 rgba(255,255,255,0.15);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 6px;
+    padding: 6px 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 0.55rem 1rem;
+    color: var(--mc-white);
+    text-decoration: none;
+    font-family: var(--police-pixel);
+    font-size: 0.55rem;
+    letter-spacing: 0;
+    text-shadow: 2px 2px 0 var(--mc-shadow);
+    background: var(--mc-inv);
+    border: 2px solid #000;
+    box-shadow:
+        inset -2px -4px 0 var(--mc-inv-dark),
+        inset 2px 4px 0 var(--mc-inv-light);
+    transition: filter 0.1s, color 0.1s;
+}
+
+nav ul li a:hover {
+    filter: brightness(1.25);
+    color: var(--mc-yellow);
+    text-shadow: 2px 2px 0 var(--mc-yellow-dark);
+}
+
+nav ul li a.actif {
+    color: var(--mc-yellow);
+    text-shadow: 2px 2px 0 var(--mc-yellow-dark);
+    background: #5A5A5A;
+}
+
+/* ========================================
+   HEADER – ciel Minecraft avec titre doré
+   ======================================== */
+header {
+    background: linear-gradient(180deg,
+        #1A2F6A 0%,
+        #2A4FA0 35%,
+        #3A6FD0 65%,
+        #4A80D8 100%
+    );
+    padding: 5rem 2rem 3.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 8px solid #000;
+}
+
+/* Nuages pixelisés */
+header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(ellipse 80px 20px at 15% 40%, rgba(255,255,255,0.85) 0%, transparent 70%),
+        radial-gradient(ellipse 60px 16px at 25% 35%, rgba(255,255,255,0.85) 0%, transparent 70%),
+        radial-gradient(ellipse 90px 22px at 55% 30%, rgba(255,255,255,0.8) 0%, transparent 70%),
+        radial-gradient(ellipse 70px 18px at 70% 45%, rgba(255,255,255,0.85) 0%, transparent 70%),
+        radial-gradient(ellipse 50px 14px at 85% 25%, rgba(255,255,255,0.75) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Bande herbe/terre en bas du header */
+header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 16px;
+    background: linear-gradient(to bottom,
+        #5C8C10 0px,
+        #5C8C10 8px,
+        #7A5C3A 8px,
+        #7A5C3A 16px
+    );
+    image-rendering: pixelated;
+}
+
+header h1 {
+    font-family: var(--police-pixel);
+    font-size: clamp(2rem, 8vw, 4.5rem);
+    letter-spacing: 0.1em;
+    color: var(--mc-yellow);
+    text-shadow:
+        4px 4px 0 var(--mc-yellow-dark),
+        8px 8px 0 rgba(0,0,0,0.6),
+        -2px -2px 0 rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
+}
+
+header p {
+    color: var(--mc-white);
+    font-family: var(--police-pixel);
+    font-size: 0.55rem;
+    text-shadow: 2px 2px 0 #000;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    line-height: 2.2;
+    letter-spacing: 0.03em;
+}
+
+/* ========================================
+   CONTENU PRINCIPAL
+   ======================================== */
+main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+/* Sections = panneaux inventaire/coffre */
+section {
+    background: #3C3C3C;
+    border: 4px solid #000;
+    box-shadow:
+        inset 4px 4px 0 rgba(255,255,255,0.12),
+        inset -4px -4px 0 #252525,
+        6px 6px 0 #000;
+    padding: 1.8rem;
+    margin-bottom: 2.5rem;
+}
+
+/* --- Titres H2 – style étiquette Minecraft --- */
+h2 {
+    font-family: var(--police-pixel);
+    font-size: clamp(0.8rem, 2.5vw, 1.1rem);
+    color: var(--mc-yellow);
+    text-shadow: 3px 3px 0 var(--mc-yellow-dark);
+    margin: 0 0 1.2rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 4px solid #000;
+    letter-spacing: 0.06em;
+    line-height: 1.6;
+}
+
+h3 {
+    font-family: var(--police-pixel);
+    font-size: clamp(0.6rem, 1.8vw, 0.8rem);
+    color: var(--mc-grass);
+    text-shadow: 2px 2px 0 var(--mc-grass-dark);
+    margin: 1.4rem 0 0.7rem;
+    letter-spacing: 0.04em;
+    line-height: 1.8;
+}
+
+/* --- Paragraphes --- */
+p {
+    margin-bottom: 1rem;
+    color: var(--mc-white);
+    font-size: 0.95rem;
+    line-height: 1.9;
+}
+
+strong {
+    color: var(--mc-aqua);
+    text-shadow: 1px 1px 0 #005555;
+}
+
+/* --- Listes --- */
+ul, ol {
+    margin: 0.8rem 0 1rem 0.5rem;
+    list-style: none;
+}
+
+li {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    padding-left: 1.2rem;
+    position: relative;
+}
+
+li::before {
+    content: '▶';
+    color: var(--mc-grass);
+    font-size: 0.6rem;
+    position: absolute;
+    left: 0;
+    top: 0.25rem;
+}
+
+/* ========================================
+   IMAGES – rendu pixelisé, cadre bloc
+   ======================================== */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border: 4px solid #000;
+    image-rendering: pixelated;
+    margin: 1rem 0;
+    box-shadow:
+        inset 2px 2px 0 rgba(255,255,255,0.1),
+        inset -2px -2px 0 rgba(0,0,0,0.4),
+        4px 4px 0 #000;
+}
+
+.image-bloc {
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.image-bloc img {
+    margin: 0 auto;
+    max-height: 340px;
+    object-fit: cover;
+}
+
+.image-bloc p {
+    font-family: var(--police-pixel);
+    font-size: 0.5rem;
+    color: #AAAAAA;
+    margin-top: 0.5rem;
+    text-shadow: 1px 1px 0 #000;
+}
+
+.grille-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 1.5rem 0;
+}
+
+.grille-images img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin: 0;
+}
+
+/* ========================================
+   VIDÉO
+   ======================================== */
+video {
+    width: 100%;
+    max-width: 640px;
+    display: block;
+    margin: 1rem auto;
+    border: 4px solid #000;
+    box-shadow: 4px 4px 0 #000;
+}
+
+/* ========================================
+   TABLEAU – style grille inventaire
+   ======================================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    border: 4px solid #000;
+}
+
+th, td {
+    padding: 0.6rem 0.8rem;
+    border: 2px solid #000;
+    text-align: left;
+}
+
+th {
+    background: #5A5A5A;
+    color: var(--mc-yellow);
+    font-family: var(--police-pixel);
+    font-size: 0.55rem;
+    text-shadow: 1px 1px 0 var(--mc-yellow-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.1);
+}
+
+tr:nth-child(even) td {
+    background-color: rgba(255,255,255,0.04);
+}
+
+tr:hover td {
+    background-color: rgba(255,255,0,0.06);
+}
+
+/* ========================================
+   CARTES
+   ======================================== */
+.carte {
+    background: #4A4A4A;
+    border: 4px solid #000;
+    box-shadow:
+        inset 2px 2px 0 rgba(255,255,255,0.12),
+        inset -2px -2px 0 #252525;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.carte:hover {
+    background: #555555;
+    filter: brightness(1.05);
+}
+
+.carte h3 {
+    margin-top: 0;
+    color: var(--mc-aqua);
+    text-shadow: 2px 2px 0 #005555;
+}
+
+/* ========================================
+   BOUTONS – style bouton Minecraft
+   ======================================== */
+.boutons-nav {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+.bouton {
+    display: inline-block;
+    padding: 0.75rem 1.6rem;
+    background: var(--mc-inv);
+    color: var(--mc-yellow);
+    text-decoration: none;
+    font-family: var(--police-pixel);
+    font-size: 0.6rem;
+    text-shadow: 2px 2px 0 var(--mc-yellow-dark);
+    border: 2px solid #000;
+    box-shadow:
+        inset -2px -4px 0 var(--mc-inv-dark),
+        inset 2px 4px 0 var(--mc-inv-light);
+    border-radius: 0;
+    letter-spacing: 0.04em;
+    transition: filter 0.1s;
+}
+
+.bouton:hover {
+    filter: brightness(1.25);
+    color: var(--mc-white);
+    text-shadow: 2px 2px 0 #555;
+}
+
+/* ========================================
+   PAGE SOURCES
+   ======================================== */
+.sources-liste {
+    list-style: none;
+    margin-left: 0;
+}
+
+.sources-liste li {
+    padding: 0.6rem 0;
+    border-bottom: 2px solid #000;
+}
+
+.sources-liste li::before {
+    content: '▶';
+    color: var(--mc-grass);
+}
+
+.sources-liste a {
+    color: var(--mc-aqua);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.1s;
+}
+
+.sources-liste a:hover {
+    color: var(--mc-yellow);
+}
+
+/* ========================================
+   FOOTER – barre de statut Minecraft
+   ======================================== */
+footer {
+    text-align: center;
+    padding: 1.2rem 2rem;
+    margin-top: 2rem;
+    border-top: 4px solid #000;
+    color: #AAAAAA;
+    font-family: var(--police-pixel);
+    font-size: 0.5rem;
+    background: #3C3C3C;
+    text-shadow: 1px 1px 0 #000;
+    box-shadow:
+        inset 0 4px 0 rgba(255,255,255,0.08),
+        inset 0 -2px 0 #252525;
+    letter-spacing: 0.05em;
+    line-height: 2;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 600px) {
+    header {
+        padding: 3rem 1rem 2.5rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+        letter-spacing: 0.05em;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    nav ul li a {
+        font-size: 0.45rem;
+        padding: 0.45rem 0.7rem;
+    }
+
+    section {
+        padding: 1.2rem;
+    }
+
+    .grille-images {
+        grid-template-columns: 1fr;
+    }
+
+    .boutons-nav {
+        flex-direction: column;
+    }
+}
+
+img {
+  transition: transform 0.3s ease;
+}
